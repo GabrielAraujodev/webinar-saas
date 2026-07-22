@@ -45,10 +45,13 @@ export const BLOCK_TYPES = {
   HERO: 'hero',
   BENEFITS: 'benefits',
   TESTIMONIALS: 'testimonials',
+  HOST_BIO: 'host_bio',
+  FAQ: 'faq',
+  TRAILER: 'trailer',
+  PROOF_BADGES: 'proof_badges',
   FORM: 'form',
   COUNTDOWN: 'countdown',
   TEXT: 'text',
-  IMAGE: 'image',
 };
 
 export const DEFAULT_THEME = {

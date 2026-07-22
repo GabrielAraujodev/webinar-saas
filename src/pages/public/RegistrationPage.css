@@ -284,6 +284,120 @@
   line-height: var(--leading-relaxed);
 }
 
+/* Host Bio Block */
+.reg-host-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+}
+
+.reg-host-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.reg-host-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-500);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+}
+
+.reg-host-info h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+}
+
+.reg-host-role {
+  font-size: var(--text-sm);
+  color: var(--color-primary-600);
+  font-weight: var(--font-semibold);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+/* FAQ Block */
+.reg-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.reg-faq-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+}
+
+.reg-faq-question {
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+}
+
+.reg-faq-answer {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Trailer Video */
+.reg-trailer-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.reg-trailer-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.reg-trailer-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: var(--color-gray-100);
+  color: var(--color-gray-500);
+}
+
+/* Proof Badges */
+.reg-proof-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.reg-proof-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-secondary);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .reg-hero-title {

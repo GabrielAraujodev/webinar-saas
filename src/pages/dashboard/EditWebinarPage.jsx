@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../lib/supabase';
-import { ArrowLeft, Settings, Layout, MessageSquare, Mail, BarChart3, Save, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Settings, Layout, MessageSquare, Mail, BarChart3, Save, ExternalLink, Scissors } from 'lucide-react';
 import RegistrationEditor from '../../components/editor/RegistrationEditor';
 import InteractionsEditor from '../../components/editor/InteractionsEditor';
 import EmailsEditor from '../../components/editor/EmailsEditor';
 import AnalyticsDashboard from '../../components/editor/AnalyticsDashboard';
+import AiClipsManager from '../../components/clips/AiClipsManager';
 import './EditWebinarPage.css';
 
 export default function EditWebinarPage() {
@@ -74,6 +75,7 @@ export default function EditWebinarPage() {
     { id: 'config', label: 'Configuração', icon: Settings },
     { id: 'registration', label: 'Página de Registro', icon: Layout },
     { id: 'interactions', label: 'Interações (Chat, CTA, Enquetes)', icon: MessageSquare },
+    { id: 'clips', label: 'Cortes de IA (Reels/TikTok)', icon: Scissors },
     { id: 'emails', label: 'E-mails', icon: Mail },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
   ];
@@ -206,6 +208,10 @@ export default function EditWebinarPage() {
 
           {activeTab === 'interactions' && (
             <InteractionsEditor webinarId={webinar.id} />
+          )}
+
+          {activeTab === 'clips' && (
+            <AiClipsManager webinar={webinar} />
           )}
 
           {activeTab === 'emails' && (

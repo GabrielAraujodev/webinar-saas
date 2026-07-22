@@ -308,6 +308,84 @@ export default function RegistrationPage() {
           </section>
         );
 
+      case BLOCK_TYPES.HOST_BIO:
+        return (
+          <section key={index} className="reg-block reg-host-bio">
+            <h2 className="reg-section-title">{block.data?.title || 'Quem será seu Mentor'}</h2>
+            <div className="reg-host-card">
+              {block.data?.photoUrl ? (
+                <img src={block.data.photoUrl} alt={block.data.name} className="reg-host-photo" />
+              ) : (
+                <div className="reg-host-avatar">{block.data?.name?.[0] || 'A'}</div>
+              )}
+              <div className="reg-host-info">
+                <h3>{block.data?.name || 'Apresentador Principal'}</h3>
+                <span className="reg-host-role">{block.data?.role || 'Especialista & Fundador'}</span>
+                <p>{block.data?.bio || 'Mais de 10 anos de experiência transformando negócios e liderando eventos online.'}</p>
+              </div>
+            </div>
+          </section>
+        );
+
+      case BLOCK_TYPES.FAQ:
+        return (
+          <section key={index} className="reg-block reg-faq">
+            <h2 className="reg-section-title">{block.data?.title || 'Perguntas Frequentes'}</h2>
+            <div className="reg-faq-list">
+              {(block.data?.items || [
+                { q: 'O webinário é totalmente gratuito?', a: 'Sim, a participação ao vivo é 100% gratuita.' },
+                { q: 'Haverá reprise disponível?', a: 'A reprise será disponibilizada por tempo limitado para os inscritos.' }
+              ]).map((item, i) => (
+                <details key={i} className="reg-faq-item">
+                  <summary className="reg-faq-question">{item.q}</summary>
+                  <p className="reg-faq-answer">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        );
+
+      case BLOCK_TYPES.TRAILER:
+        return (
+          <section key={index} className="reg-block reg-trailer">
+            <h2 className="reg-section-title">{block.data?.title || 'Assista à Prévia'}</h2>
+            <div className="reg-trailer-video">
+              {block.data?.videoUrl ? (
+                <iframe
+                  src={block.data.videoUrl.replace('watch?v=', 'embed/')}
+                  title="Trailer"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <div className="reg-trailer-placeholder">
+                  <p>Adicione a URL do vídeo nas configurações do bloco</p>
+                </div>
+              )}
+            </div>
+          </section>
+        );
+
+      case BLOCK_TYPES.PROOF_BADGES:
+        return (
+          <section key={index} className="reg-block reg-proof-badges">
+            <div className="reg-proof-grid">
+              <div className="reg-proof-badge">
+                <Users size={24} />
+                <span>+10.000 Participantes</span>
+              </div>
+              <div className="reg-proof-badge">
+                <Star size={24} />
+                <span>Nota 4.9/5 em Avaliações</span>
+              </div>
+              <div className="reg-proof-badge">
+                <CheckCircle size={24} />
+                <span>Certificado de Participação</span>
+              </div>
+            </div>
+          </section>
+        );
+
       case BLOCK_TYPES.TEXT:
         return (
           <section key={index} className="reg-block reg-text">
