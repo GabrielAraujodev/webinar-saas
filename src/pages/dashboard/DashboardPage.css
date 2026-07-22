@@ -132,6 +132,13 @@
   flex-shrink: 0;
 }
 
+/* Responsive Table Wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .stats-grid {
@@ -146,13 +153,26 @@
 @media (max-width: 640px) {
   .stats-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-3);
   }
 
   .page-header {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .page-header .btn {
     width: 100%;
+  }
+
+  .webinar-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-4);
+  }
+
+  .webinar-list-stat {
+    align-self: flex-end;
   }
 }
