@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../lib/supabase';
 import { useCountdown } from '../../hooks/useCountdown';
+import { BLOCK_TYPES } from '../../lib/constants';
 import { useSeo } from '../../hooks/useSeo';
 import { sanitizeInput, isValidEmail } from '../../lib/sanitize';
 import { CheckCircle, Clock, Star, Quote, ArrowRight, Users } from 'lucide-react';
