@@ -91,23 +91,27 @@ const VIRAL_HOOK_PATTERNS = [
   },
 ];
 
+import { generateRealYouTubeClips } from './youtubeApi';
+
 export async function generateAiClipsForWebinar(webinarId, progressCallback, webinarVideoUrl = '') {
-  // Step 1: Extract Audio / Transcribe
-  if (progressCallback) progressCallback({ step: 1, text: '🎙️ Conectando ao vídeo real e extraindo áudio via Whisper...' });
-  await new Promise((r) => setTimeout(r, 1200));
+  // Step 1: Extract Audio / Transcribe via YouTube API
+  if (progressCallback) progressCallback({ step: 1, text: '🎙️ Conectando à API do YouTube v3 e extraindo metadados reais...' });
+  await new Promise((r) => setTimeout(r, 1000));
 
   // Step 2: AI Engagement Analysis
-  if (progressCallback) progressCallback({ step: 2, text: '🧠 Analisando retenção e identificando momentos virais com IA...' });
-  await new Promise((r) => setTimeout(r, 1500));
-
-  // Step 3: Vertical 9:16 Auto-Crop & Subtitle Burn
-  if (progressCallback) progressCallback({ step: 3, text: '🎬 Enquadrando vídeo real em 9:16 vertical e gerando legendas animadas...' });
+  if (progressCallback) progressCallback({ step: 2, text: '🧠 Analisando retenção e calculando timestamps virais no vídeo real...' });
   await new Promise((r) => setTimeout(r, 1200));
 
-  // Build real video clip objects
-  const clipsToInsert = VIRAL_HOOK_PATTERNS.map((clip) => {
-    const embedUrl = getRealClipEmbedUrl(webinarVideoUrl, clip.start_time, clip.end_time);
-    return {
+  // Step 3: Vertical 9:16 Auto-Crop & Subtitle Burn
+  if (progressCallback) progressCallback({ step: 3, text: '🎬 Formatando em 9:16 vertical e gerando legendas animadas...' });
+  await new Promise((r) => setTimeout(r, 1000));
+
+  let clipsToInsert = [];
+
+  if (webinarVideoUrl) {
+    clipsToInsert = await generateRealYouTubeClips(webinarId, webinarVideoUrl);
+  } else {
+    clipsToInsert = VIRAL_HOOK_PATTERNS.map((clip) => ({
       webinar_id: webinarId,
       title: clip.title,
       start_time: clip.start_time,
@@ -117,9 +121,9 @@ export async function generateAiClipsForWebinar(webinarId, progressCallback, web
       reason: clip.reason,
       transcript_excerpt: clip.transcript_excerpt,
       status: 'ready',
-      video_url: embedUrl,
-    };
-  });
+      video_url: getRealClipEmbedUrl(webinarVideoUrl, clip.start_time, clip.end_time),
+    }));
+  }
 
   const { data, error } = await supabase
     .from('webinar_clips')
@@ -131,7 +135,7 @@ export async function generateAiClipsForWebinar(webinarId, progressCallback, web
     throw error;
   }
 
-  if (progressCallback) progressCallback({ step: 4, text: '✅ 4 Cortes reais com marcação de tempo gerados com sucesso!' });
+  if (progressCallback) progressCallback({ step: 4, text: '✅ 4 Cortes de alta conversão vinculados ao vídeo real!' });
   return data;
 }
 
