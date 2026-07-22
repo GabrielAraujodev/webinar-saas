@@ -39,6 +39,7 @@ export default function WebinarRoomPage() {
   const [showCtaBanner, setShowCtaBanner] = useState(false);
   const [dismissedCtas, setDismissedCtas] = useState(new Set());
   const [isMuted, setIsMuted] = useState(true);
+  const [activeMobileTab, setActiveMobileTab] = useState('chat');
 
   const chatEndRef = useRef(null);
   const videoIntervalRef = useRef(null);
@@ -400,51 +401,71 @@ export default function WebinarRoomPage() {
 
         {/* Sidebar: Chat + Polls */}
         <div className="room-sidebar">
-          {/* Poll Widget */}
-          {activePoll && !pollSubmitted && (
-            <div className="room-poll">
-              <div className="room-poll-header">
-                <BarChart3 size={16} />
-                <span>{t('polls.title')}</span>
-              </div>
-              <h4 className="room-poll-question">{activePoll.question}</h4>
-              <div className="room-poll-options">
-                {(activePoll.options || []).map((option, idx) => (
-                  <button
-                    key={idx}
-                    className={`room-poll-option ${selectedPollOption === idx ? 'selected' : ''}`}
-                    onClick={() => setSelectedPollOption(idx)}
-                  >
-                    <span className="room-poll-option-radio" />
-                    {option}
-                  </button>
-                ))}
-              </div>
-              <button
-                className="btn btn-primary btn-sm"
-                onClick={handlePollVote}
-                disabled={selectedPollOption === null}
-                style={{ width: '100%' }}
-              >
-                {t('polls.vote')}
-              </button>
-            </div>
-          )}
+          {/* Mobile Tab Selector */}
+          <div className="room-mobile-tabs">
+            <button
+              className={`room-mobile-tab ${activeMobileTab === 'chat' ? 'active' : ''}`}
+              onClick={() => setActiveMobileTab('chat')}
+            >
+              <MessageCircle size={16} />
+              <span>{t('chat.title')} ({allMessages.length})</span>
+            </button>
+            <button
+              className={`room-mobile-tab ${activeMobileTab === 'polls' ? 'active' : ''}`}
+              onClick={() => setActiveMobileTab('polls')}
+            >
+              <BarChart3 size={16} />
+              <span>{t('polls.title')}</span>
+            </button>
+          </div>
 
-          {pollSubmitted && activePoll && (
-            <div className="room-poll room-poll-submitted">
-              <div className="room-poll-header">
-                <ThumbsUp size={16} />
-                <span>{t('polls.results')}</span>
-              </div>
-              <p className="room-poll-thanks">
-                {t('polls.totalVotes', { count: activePoll.poll_responses?.length || 1 })}
-              </p>
+          {/* Poll Widget */}
+          {activePoll && (
+            <div className={`room-poll-section ${activeMobileTab !== 'polls' ? 'mobile-hidden' : ''}`}>
+              {!pollSubmitted ? (
+                <div className="room-poll">
+                  <div className="room-poll-header">
+                    <BarChart3 size={16} />
+                    <span>{t('polls.title')}</span>
+                  </div>
+                  <h4 className="room-poll-question">{activePoll.question}</h4>
+                  <div className="room-poll-options">
+                    {(activePoll.options || []).map((option, idx) => (
+                      <button
+                        key={idx}
+                        className={`room-poll-option ${selectedPollOption === idx ? 'selected' : ''}`}
+                        onClick={() => setSelectedPollOption(idx)}
+                      >
+                        <span className="room-poll-option-radio" />
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={handlePollVote}
+                    disabled={selectedPollOption === null}
+                    style={{ width: '100%' }}
+                  >
+                    {t('polls.vote')}
+                  </button>
+                </div>
+              ) : (
+                <div className="room-poll room-poll-submitted">
+                  <div className="room-poll-header">
+                    <ThumbsUp size={16} />
+                    <span>{t('polls.results')}</span>
+                  </div>
+                  <p className="room-poll-thanks">
+                    {t('polls.totalVotes', { count: activePoll.poll_responses?.length || 1 })}
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
           {/* Chat */}
-          <div className="room-chat">
+          <div className={`room-chat ${activeMobileTab !== 'chat' ? 'mobile-hidden' : ''}`}>
             <div className="room-chat-header">
               <MessageCircle size={16} />
               <span>{t('chat.title')}</span>

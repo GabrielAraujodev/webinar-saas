@@ -301,6 +301,36 @@
   overflow: hidden;
 }
 
+/* Mobile Tabs (Hidden on Desktop) */
+.room-mobile-tabs {
+  display: none;
+  background: rgba(15, 23, 42, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.room-mobile-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: transparent;
+  border: none;
+  color: var(--color-gray-400);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.room-mobile-tab.active {
+  color: white;
+  border-bottom-color: var(--color-primary-500);
+  background: rgba(255, 255, 255, 0.05);
+}
+
 /* Poll */
 .room-poll {
   padding: var(--space-4);
@@ -532,11 +562,21 @@
     min-height: 200px;
   }
 
+  .room-mobile-tabs {
+    display: flex;
+  }
+
+  .mobile-hidden {
+    display: none !important;
+  }
+
   .room-sidebar {
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     flex: 1;
     min-height: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .room-unmute-overlay {
