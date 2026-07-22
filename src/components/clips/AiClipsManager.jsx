@@ -15,7 +15,7 @@ import {
   Palette,
   ExternalLink,
 } from 'lucide-react';
-import { generateAiClipsForWebinar, getWebinarClips, deleteWebinarClip } from '../../lib/aiClipsGenerator';
+import { generateAiClipsForWebinar, getWebinarClips, deleteWebinarClip, getRealClipEmbedUrl, getRealClipShareUrl } from '../../lib/aiClipsGenerator';
 import './AiClipsManager.css';
 
 const SUBTITLE_STYLES = {
@@ -50,7 +50,7 @@ export default function AiClipsManager({ webinar }) {
     try {
       await generateAiClipsForWebinar(webinar.id, (status) => {
         setProgressStatus(status);
-      });
+      }, webinar.video_url);
       await fetchClips();
     } catch (err) {
       alert('Erro ao gerar cortes. Tente novamente.');
@@ -218,16 +218,16 @@ export default function AiClipsManager({ webinar }) {
               {/* 9:16 Smartphone Frame */}
               <div className="phone-preview-frame">
                 <div className="phone-screen">
-                  {/* Simulated Video Player */}
+                  {/* Real Video Player with Start & End Timestamps */}
                   <div className="phone-video-container">
                     <iframe
                       src={
-                        webinar.video_url
-                          ? webinar.video_url.replace('watch?v=', 'embed/') + '?autoplay=1&mute=1'
-                          : 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1'
+                        selectedClip.video_url ||
+                        getRealClipEmbedUrl(webinar.video_url, selectedClip.start_time, selectedClip.end_time)
                       }
                       title={selectedClip.title}
-                      allow="autoplay; encrypted-media"
+                      allow="autoplay; encrypted-media; picture-in-picture"
+                      allowFullScreen
                     />
 
                     {/* Animated Hormozi Subtitles Overlay */}
