@@ -53,6 +53,7 @@ export function AuthProvider({ children }) {
       email,
       password,
       options: {
+        emailRedirectTo: `${window.location.origin}/dashboard`,
         data: { name, org_name: orgName },
       },
     });
