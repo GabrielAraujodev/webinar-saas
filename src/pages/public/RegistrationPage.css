@@ -1,0 +1,313 @@
+/* --- Registration Page --- */
+.reg-page {
+  min-height: 100vh;
+  background-color: var(--reg-bg, var(--color-white));
+  color: var(--reg-text, var(--color-text));
+}
+
+.reg-loading,
+.reg-error {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Success page */
+.reg-success-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-subtle);
+  padding: var(--space-4);
+}
+
+.reg-success-card {
+  text-align: center;
+  background: var(--color-surface);
+  padding: var(--space-12);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  max-width: 480px;
+  animation: slideUp var(--transition-slow) ease;
+}
+
+.reg-success-icon {
+  color: var(--color-success-500);
+  margin-bottom: var(--space-6);
+}
+
+.reg-success-card h1 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-3);
+}
+
+.reg-success-card p {
+  margin-bottom: var(--space-8);
+}
+
+/* Blocks */
+.reg-block {
+  padding: var(--space-16) var(--space-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Hero */
+.reg-hero {
+  text-align: center;
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-16);
+}
+
+.reg-hero-title {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-extrabold);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: var(--space-6);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reg-hero-subtitle {
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-8);
+  line-height: var(--leading-relaxed);
+}
+
+.reg-hero-cta {
+  background-color: var(--reg-primary, var(--color-primary-600)) !important;
+  font-size: var(--text-lg) !important;
+  padding: var(--space-4) var(--space-10) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-base);
+}
+
+.reg-hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Countdown */
+.reg-countdown-section {
+  text-align: center;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+  background-color: var(--color-bg-subtle);
+}
+
+.reg-countdown-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+}
+
+.reg-countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.reg-countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.reg-countdown-value {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  color: var(--reg-primary, var(--color-primary-600));
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  min-width: 80px;
+}
+
+.reg-countdown-unit-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-tertiary);
+}
+
+.reg-countdown-separator {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  color: var(--color-gray-300);
+  padding-bottom: var(--space-5);
+}
+
+/* Benefits */
+.reg-benefits {
+  padding-top: var(--space-12);
+}
+
+.reg-section-title {
+  font-size: var(--text-3xl);
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.reg-benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.reg-benefit-item {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-base);
+}
+
+.reg-benefit-item:hover {
+  border-color: var(--color-primary-200);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.reg-benefit-icon {
+  color: var(--reg-primary, var(--color-primary-600));
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.reg-benefit-item h4 {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.reg-benefit-item p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Testimonials */
+.reg-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.reg-testimonial-card {
+  padding: var(--space-6);
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.reg-testimonial-quote {
+  color: var(--color-primary-200);
+  margin-bottom: var(--space-3);
+}
+
+.reg-testimonial-text {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+  font-style: italic;
+  margin-bottom: var(--space-4);
+}
+
+.reg-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.reg-testimonial-name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  display: block;
+}
+
+.reg-testimonial-role {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* Form */
+.reg-form-section {
+  display: flex;
+  justify-content: center;
+}
+
+.reg-form-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-lg);
+}
+
+.reg-form-title {
+  font-size: var(--text-2xl);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.reg-submit {
+  width: 100%;
+  margin-top: var(--space-2);
+  background-color: var(--reg-primary, var(--color-primary-600)) !important;
+}
+
+/* Text block */
+.reg-text {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reg-hero-title {
+    font-size: var(--text-3xl);
+  }
+
+  .reg-hero-subtitle {
+    font-size: var(--text-base);
+  }
+
+  .reg-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reg-countdown-value {
+    font-size: var(--text-3xl);
+    min-width: 56px;
+  }
+
+  .reg-block {
+    padding: var(--space-10) var(--space-4);
+  }
+
+  .reg-form-card {
+    padding: var(--space-5);
+  }
+}
